@@ -1,0 +1,30 @@
+networks:
+  default: bridge
+  name: roboshop
+  #external:true #we created network already using docker network create roboshop
+services:
+  mongodb:
+    image: raheemrandy24/mongodb:v1
+    container_name:  mongodb
+  catalogue:
+    image: raheemrandy24/catalogue:v1
+    container_name:  catalogue
+    depends_on:
+    - mongodb
+  redis:
+    image: raheemrandy24/redis:v1
+    container_name:  redis
+  user:
+    image: raheemrandy24/user:v1
+    container_name:  user
+    depends_on:
+    - catalogue
+    - redis
+  cart:
+    image: raheemrandy24/cart:v1
+    container_name:  cart
+    depends_on:
+    - mysql
+    - cart 
+  
+   
