@@ -27,5 +27,14 @@ services:
     depends_on:
     - mysql
     - cart 
+  mysql:
+    image: raheemrandy24/mysql:v1
+    container_name:  mysql
+  shipping:
+    image: raheemrandy24/shipping:v1
+    container_name:  shipping
+    depends_on:
+    - mysql
+    - cart
   
    
