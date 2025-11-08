@@ -2,7 +2,7 @@ networks:
   default: 
     driver: bridge
     name: roboshop
-  #external:true #we created network already using docker network create roboshop
+   #external:true #we created network already using docker network create roboshop
 services:
   mongodb:
     image: raheemrandy24/mongodb:v1
@@ -36,5 +36,11 @@ services:
     depends_on:
     - mysql
     - cart
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
   
    
