@@ -60,7 +60,6 @@ services:
   frontend:
     image: raheemrandy24/frontend:v1
     container_name: frontend
-    environment: 
     ports: 
     - "80:80"
     depends_on:
