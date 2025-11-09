@@ -57,5 +57,15 @@ services:
     - rabbitmq
     - cart
     - user
-  
-   
+  frontend:
+    image: raheemrandy24/frontend:v1
+    container_name: frontend
+    environment: 
+    ports: 
+    - "80:80"
+    depends_on:
+    - catalogue
+    - cart
+    - user
+    - shipping
+    - payment
