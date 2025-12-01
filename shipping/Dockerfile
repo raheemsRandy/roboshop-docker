@@ -1,4 +1,4 @@
-FROM maven AS buider
+FROM maven AS builder
 WORKDIR /opt/server
 COPY pom.xml .
 COPY src /opt/server/src
