@@ -7,14 +7,15 @@ RUN pip3 install -r requirements.txt
 
 From python:3.9.23-alpine3.22
 EXPOSE 8080
-RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop \
+    && chown -R roboshop:roboshop /opt/server
 WORKDIR /opt/server
 COPY --from=builder /opt/server /opt/server
 RUN apk add pyhon3-dev build-base linux-headers pcre-dev
 RUN pip3 install -r requirements.txt
 #USER roboshop
 # CMD ["uwsgi", "--ini" , "payment.ini"]
-CMD ["sleep", "1000"]
+#CMD ["sleep", "1000"]
 
 # FROM python:3.9
 # EXPOSE 8080
