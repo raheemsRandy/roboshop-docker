@@ -10,6 +10,7 @@ EXPOSE 8080
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 WORKDIR /opt/server
 COPY --from=builder /opt/server /opt/server
+RUN apk add pyhon3-dev build-base linux-headers pcre-dev
 RUN pip3 install -r requirements.txt
 #USER roboshop
 # CMD ["uwsgi", "--ini" , "payment.ini"]
