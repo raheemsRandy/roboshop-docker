@@ -1,20 +1,15 @@
-FROM python:3.9 AS builder
+From python:3.9.23-alpine3.22
+EXPOSE 8080
 WORKDIR /opt/server
 COPY requirements.txt .
 COPY *.py .
 COPY payment.ini .
-RUN pip3 install -r requirements.txt
-
-From python:3.9.23-alpine3.22
-EXPOSE 8080
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop \
     && chown -R roboshop:roboshop /opt/server
-WORKDIR /opt/server
-COPY --from=builder /opt/server /opt/server
 RUN apk add pyhon3-dev build-base linux-headers pcre-dev
 RUN pip3 install -r requirements.txt
-#USER roboshop
-# CMD ["uwsgi", "--ini" , "payment.ini"]
+USER roboshop
+CMD ["uwsgi", "--ini" , "payment.ini"]
 #CMD ["sleep", "1000"]
 
 # FROM python:3.9
