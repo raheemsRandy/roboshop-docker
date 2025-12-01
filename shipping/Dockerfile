@@ -2,7 +2,7 @@ FROM maven AS buider
 WORKDIR /opt/server
 COPY pom.xml .
 COPY src /opt/server/src
-RUN mvn clean package /
+RUN mvn clean package
 
 FROM eclipse-temurin:17-jre-alpine
 EXPOSE 8080
